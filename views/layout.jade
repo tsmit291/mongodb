@@ -1,0 +1,51 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Jura:400,500' rel='stylesheet' type='text/css')
+    script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js")
+
+  body
+    section.top
+      img.logo(src="/images/galvanizeLogo.png" alt="")
+      h1.title Galvanize Reads
+      nav.navBar
+        if admin
+          a(href='/authors/new') Add New Author
+          a(href='/books/new') Add New Book
+          
+        if user
+          span Hello #{user.displayName}!
+          a(href='/auth/logout') Logout
+          
+        if !user
+          div.dropdown
+            button.dropbtn(onclick="myFunction()") Login
+              div#myDropdown.dropdown-content
+                a(href="/auth/linkedin") Login with Linkedin
+                a(href="/auth/galvanize") Login with Galvanize Reads
+
+                script.
+                  /* When the user clicks on the button, 
+                  toggle between hiding and showing the dropdown content */
+                  function myFunction() {
+                      document.getElementById("myDropdown").classList.toggle("show");
+                  }
+
+                  // Close the dropdown menu if the user clicks outside of it
+                  window.onclick = function(event) {
+                    if (!event.target.matches('.dropbtn')) {
+
+                      var dropdowns = document.getElementsByClassName("dropdown-content");
+                      var i;
+                      for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                          openDropdown.classList.remove('show');
+                        }
+                      }
+                    }
+                  }
+    div.container
+      block content

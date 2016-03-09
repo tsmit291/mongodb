@@ -1,0 +1,31 @@
+script.
+  var addAuthor = function() {
+    var selectList = document.getElementById('authorSelect');
+    var index = selectList.selectedIndex;
+    alert(selectList[index].value);
+    var value = selectList[index].value;
+    alert('value = '+value);
+    var authorDiv = "<div id = " + value + "> </div>"
+    $('#authorList').append(authorDiv);
+    var authorName = selectList[index].text;
+    alert('text = '+authorName);
+    var authorText = "<h6 id = " + value + ">" + authorName + "</h6>";
+    $('#'+value).append(authorText);
+  }
+
+
+  removeId.setAttribute("onclick", 'removeAuthor()');
+
+  "<div id = author" + value + "> </div>"
+
+  $('#'+value).append(authorText);
+
+    //- textarea.textDescription(id="description", name="description", value = "#{book.description}")
+
+
+bookForm.jade
+for author,index in authors
+  input(type="hidden", id="authorName"+index, name="author"+index, value="#{author.first_name}")
+select#authorSelect(name="authorSelectNames[]" )
+  for author in authors
+    option(value="#{author.id}") #{author.first_name} #{author.last_name}

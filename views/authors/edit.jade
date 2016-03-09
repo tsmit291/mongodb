@@ -1,0 +1,6 @@
+include ../layout
+  block content
+  include layout
+    block content2
+      form.formCenter(action="/authors/#{author.id}/edit" method = "POST")
+        include authorForm
